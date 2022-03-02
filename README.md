@@ -1,5 +1,5 @@
-# scripts-lab
+# Crafters-Union
 
-home for all things crafters union!
+Home for all things crafters union!
 
 - cu-monitor: ruby/lich script monitors for game events and pushes them to a discord webhook.
