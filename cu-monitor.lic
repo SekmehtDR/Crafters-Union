@@ -1,0 +1,58 @@
+=begin
+    Script looks for game lines then sends to webhook.
+=end
+
+no_kill_all
+no_pause_all
+
+require 'net/http'
+require 'uri'
+require 'json'
+
+#waits for prospect/watchforest text outputs
+loop do 
+    material = []
+    loop do
+        line = get
+        case line
+        when /^You are certain that (\w+) can be (?:mined|harvested) here.$/
+            x = Regexp.last_match(1)
+            material.push(x)
+        when /^You are certain that (\w+) trees can be (?:mined|harvested) here.$/
+            x = Regexp.last_match(1)
+            material.push(x)
+        when /^(?:Miners|Loggers) stand ready to trade/, /^Roundtime.*$/
+            break
+        when /^No (?:miners|loggers) appear to be nearby, and you will be unable to deed resources mined in this area/, /^Roundtime.*$/
+            break
+        end
+    end
+    
+    unless material.empty?
+        #DRC.message("#{Char.name} has discovered #{material}! #{Room.current.title} (LichRoomID: #{Room.current.id})")
+        DRC.message("Discovered #{material} #{Room.current.title} (LichRoomID: #{Room.current.id})")
+        
+        uri = URI.parse("https://discord.com/api/webhooks/#####################################################") #Get actual URL from CU Server
+        request = Net::HTTP::Post.new(uri)
+        request.content_type = "application/json"
+        request.body = JSON.dump({
+            "username" => "Todd, Explorer of Elanthia",
+            "content" => "Discovered #{material} #{Room.current.title} (LichRoomID: #{Room.current.id})"
+        })
+  
+        req_options = {
+            use_ssl: uri.scheme == "https",
+        }
+        
+          response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+            http.request(request)
+          end
+    end
+end
+
+
+
+
+
+
+
