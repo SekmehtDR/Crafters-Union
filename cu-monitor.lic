@@ -9,6 +9,8 @@ require 'net/http'
 require 'uri'
 require 'json'
 
+@DiscordwebhookURL = '<webhookURLhere>'
+
 #waits for prospect/watchforest text outputs
 loop do 
     material = []
@@ -32,7 +34,7 @@ loop do
         #DRC.message("#{Char.name} has discovered #{material}! #{Room.current.title} (LichRoomID: #{Room.current.id})")
         DRC.message("Discovered #{material} #{Room.current.title} (LichRoomID: #{Room.current.id})")
         
-        uri = URI.parse("https://discord.com/api/webhooks/#####################################################") #Get actual URL from CU Server
+        uri = URI.parse("#{@DiscordwebhookURL}")
         request = Net::HTTP::Post.new(uri)
         request.content_type = "application/json"
         request.body = JSON.dump({
@@ -49,10 +51,3 @@ loop do
           end
     end
 end
-
-
-
-
-
-
-
