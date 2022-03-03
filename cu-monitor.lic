@@ -32,7 +32,7 @@ loop do
     
     unless material.empty?
         #DRC.message("#{Char.name} has discovered #{material}! #{Room.current.title} (LichRoomID: #{Room.current.id})")
-        DRC.message("#{material} #{Room.current.title} [LichRoomID: #{Room.current.id}]")
+        DRC.message("#{material} #{Room.current.title} -- LichRoomID: #{Room.current.id}")
         
         uri = URI.parse("#{@DiscordwebhookURL}")
         request = Net::HTTP::Post.new(uri)
