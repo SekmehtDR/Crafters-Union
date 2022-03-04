@@ -9,7 +9,7 @@ require 'net/http'
 require 'uri'
 require 'json'
 
-@DiscordwebhookURL = '<webhookURLhere>'
+@DiscordwebhookURL = @DiscordwebhookURL = '<webhookURLhere>'
 
 #waits for prospect/watchforest text outputs
 loop do 
@@ -30,7 +30,7 @@ loop do
         end
     end
     
-    unless material.empty? || Room.current.id.nil?
+    unless material.empty?
         #DRC.message("#{Char.name} has discovered #{material}! #{Room.current.title} (LichRoomID: #{Room.current.id})")
         DRC.message("#{material} #{Room.current.title} -- LichRoomID: #{Room.current.id}")
         
