@@ -9,7 +9,7 @@ require 'net/http'
 require 'uri'
 require 'json'
 
-@DiscordwebhookURL = @DiscordwebhookURL = '<webhookURLhere>'
+@DiscordwebhookURL = '<webhookURLhere>'
 
 #waits for prospect/watchforest text outputs
 loop do 
