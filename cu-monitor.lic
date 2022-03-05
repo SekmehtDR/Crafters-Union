@@ -10,6 +10,7 @@ require 'uri'
 require 'json'
 
 @DiscordwebhookURL = '<webhookURLhere>'
+contribid = rand(1...100)
 
 #waits for prospect/watchforest text outputs
 loop do 
@@ -32,14 +33,14 @@ loop do
     
     unless material.empty?
         #DRC.message("#{Char.name} has discovered #{material}! #{Room.current.title} (LichRoomID: #{Room.current.id})")
-        DRC.message("#{material} #{Room.current.title} -- LichRoomID: #{Room.current.id}")
+        DRC.message("#{material} #{Room.current.title} [#{Room.current.id}] --Session:#{contribid}")
         
         uri = URI.parse("#{@DiscordwebhookURL}")
         request = Net::HTTP::Post.new(uri)
         request.content_type = "application/json"
         request.body = JSON.dump({
             "username" => "Todd, Explorer of Elanthia",
-            "content" => "#{material} #{Room.current.title} -- LichRoomID: #{Room.current.id}"
+            "content" => "#{material} #{Room.current.title} [#{Room.current.id}] --Session:#{contribid}"
         })
   
         req_options = {
