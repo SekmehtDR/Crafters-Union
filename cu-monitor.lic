@@ -38,7 +38,7 @@ loop do
         if DRRoom.description == "It's pitch dark and you can't see a thing!"
             room = "[Dark Room]"
         else
-            room = "#{DRRoom.title} [#{Room.current.id}]"
+            room = "[#{DRRoom.title.tr('[]', '')}] [#{Room.current.id}]"
         end
         
         DRC.message("#{material} #{room} --Session:#{contribid}")
