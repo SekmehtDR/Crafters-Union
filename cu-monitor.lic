@@ -34,7 +34,6 @@ loop do
     end
     
     unless material.empty?
-        #DRC.message("#{Char.name} has discovered #{material}! #{Room.current.title} (LichRoomID: #{Room.current.id})")
         DRC.message("#{material} #{Room.current.title} [#{Room.current.id}] --Session:#{contribid}")
         
         uri = URI.parse("#{@DiscordwebhookURL}")
