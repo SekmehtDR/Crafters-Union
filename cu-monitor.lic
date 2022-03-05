@@ -2,6 +2,8 @@
     Script looks for game lines then sends to webhook.
 =end
 
+custom_require.call(%w[common])
+
 no_kill_all
 no_pause_all
 
@@ -10,7 +12,7 @@ require 'uri'
 require 'json'
 
 @DiscordwebhookURL = '<webhookURLhere>'
-contribid = rand(1...100)
+contribid = rand(1...1000)
 
 #waits for prospect/watchforest text outputs
 loop do 
