@@ -41,14 +41,14 @@ loop do
             room = "[#{DRRoom.title.tr('[]', '')}] [#{Room.current.id}]"
         end
         
-        DRC.message("#{material} #{room} --Session:#{contribid}")
+        DRC.message("#{material.reverse} #{room} --Session:#{contribid}")
     
         uri = URI.parse("#{@DiscordwebhookURL}")
         request = Net::HTTP::Post.new(uri)
         request.content_type = "application/json"
         request.body = JSON.dump({
             "username" => "Todd, Explorer of Elanthia",
-            "content" => "``#{material} #{room} --Session:#{contribid}``"
+            "content" => "``#{material.reverse} #{room} --Session:#{contribid}``"
         })
         
         req_options = {
