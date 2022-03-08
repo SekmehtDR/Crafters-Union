@@ -33,15 +33,20 @@ loop do
         end
     end
     
-    #Executes webhook if Materials were detected AND there is a lightsource in the room.
+    #Webhook only fires off when materials were found in the case above.
     unless material.empty?
         if DRRoom.description == "It's pitch dark and you can't see a thing!"
             room = "[Dark Room]"
         else
-            room = "[#{DRRoom.title.tr('[]', '')}] [#{Room.current.id}]"
+            room = "[#{DRRoom.title.tr('[]', '')}]"
+        end
+        if Room.current.id.nil? == true
+            roomid = "[Unmapped]"
+        else
+            roomid = "[#{Room.current.id}]"
         end
         
-        DRC.message("#{material.reverse} #{room} --Session:#{contribid}")
+        DRC.message("#{material.reverse} #{room} #{roomid}  --Session:#{contribid}")
     
         uri = URI.parse("#{@DiscordwebhookURL}")
         request = Net::HTTP::Post.new(uri)
