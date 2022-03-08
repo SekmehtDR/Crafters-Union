@@ -53,7 +53,7 @@ loop do
         request.content_type = "application/json"
         request.body = JSON.dump({
             "username" => "Todd, Explorer of Elanthia",
-            "content" => "``#{material.reverse} #{room} --Session:#{contribid}``"
+            "content" => "``#{material.reverse} #{room} #{roomid}  --Session:#{contribid}``"
         })
         
         req_options = {
